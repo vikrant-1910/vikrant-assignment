@@ -1,5 +1,6 @@
-#include<stdio.h>
+#include<iostream>
+using namespace std;
 main()
 {
-	printf("Welcome To Tops Technologies");
+	cout<<"Welcome to Tops Technologies";
 }
