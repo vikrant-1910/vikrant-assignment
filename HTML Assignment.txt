@@ -1,0 +1,91 @@
+1)Are the HTML tags and elements the same thing?
+-->	In HTML, tags are used to mark up the start and end of an element,
+while elements are the building blocks of an HTML document.Thus they aren't same things.
+
+2)What are tags and attributes in HTML?
+-->	HTML tags are used to hold the HTML element.
+-->	HTML attributes are used to describe the characteristic of an HTML element in detail.	
+
+3)What are void elements in HTML?
+-->	void elements in HTML are a special category of elements that are defined as having no content and no closing tag.
+
+4)What are HTML Entities?
+-->	HTML entities are the reserved characters that are used in the HTML document.
+
+5)What are different types of lists in HTML? • What is the ‘class’ attribute in HTML?
+-->    There are three types of lists in HTML :-  Unordered list or Bulleted list (ul),
+						   Ordered list or Numbered list (ol),
+						   Description list or Definition list (dl).
+-->	The class is an attribute that specifies one or more class names for an HTML element.
+      The class attribute can be used on any HTML element.
+
+6)What is the difference between the ‘id’ attribute and the ‘class’ attribute of HTML elements?
+-->	While an ID is specific to a single element, classes can be assigned to multiple elements on a page or throughout the website.
+ They are not unique. And while a single element can only have one ID, it can have multiple classes.
+
+7)What are the various formatting tags in HTML?
+-->	<b> - Bold text
+	<strong> - Important text
+	<i> - Italic text
+	<em> - Emphasized text
+	<mark> - Marked text
+	<small> - Smaller text
+	<del> - Deleted text
+	<ins> - Inserted text
+	<sub> - Subscript text
+	<sup> - Superscript text
+
+8)How is Cell Padding different from Cell Spacing?
+-->	Cell padding is used to create a border around the content area of a web page,
+ whereas cell spacing is used for positioning elements (such as images or text) within that content area.
+
+9)How can we club two or more rows or columns into a single row or column in an HTML table?
+-->	by using the rowspan and colspan attribute in HTML.
+The rowspan is used to merge or combine the number of cells in a row whereas the colspan is used to merge column cells in a table.
+
+10)What is the difference between a block-level element and an inline element?
+-->	Block elements have top and bottom margins. Inline elements don't have a top and bottom margin.
+
+11)How to create a Hyperlink in HTML?
+-->	The HTML <a> tag defines a hyperlink. which is used to link from one page to another.
+
+12)What is the use of an iframe tag?
+-->	 An inline frame is used to embed another document within the current HTML document.
+
+13)What is the use of a span tag? Explain with example?
+-->	It is used to group elements for styling purposes (by using the class or id attributes).
+
+14)How to insert a picture into a background image of a web page?
+-->	using the background image attribute inside the <body> tag.
+
+15)How are active links different from normal links?
+-->	Normal links are links which are there on the page and have not been clicked yet.
+Active links are those links, which have just been clicked at that instant.
+
+16)What are the different tags to separate sections of text?
+-->	The <br> tag is one way to separate the lines of text. 
+There are other tags like the <p> tag and <blockquote> tag that are also used to separate sections of text.
+
+17)What is SVG?
+-->	 SVG stands for Scalable Vector Graphics. SVG defines vector-based graphics in XML format.
+
+18)What is difference between HTML and XHTML?
+-->	 HTML is more lenient in its syntax, while XHTML has a more strict syntax and follows XML rules.
+
+19)What are logical and physical tags in HTML?
+-->	Logical tags are used to tell the browser what kind of text is written inside the tags.
+Physical tags are used to indicate that how specific characters are to be formatted or indicated using HTML tags.
+
+
+
+
+
+
+
+
+
+
+
+
+
+						  

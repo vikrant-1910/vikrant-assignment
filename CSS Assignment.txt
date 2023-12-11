@@ -1,0 +1,87 @@
+1)What are the benefits of using CSS?
+-->	Many benefits are there like :- Easier to maintain and update, Greater consistency in design, More formatting options, Lightweight code,
+Faster download times, Search engine optimization benefits, Ease of presenting different styles to different viewers, Greater accessibility.
+
+2)What are the disadvantages of CSS?
+-->	Security Issues − In today's technologically and data-driven society, security is crucial. 
+CSS has a restricted level of security, which is one of its main drawbacks.
+
+-->	Cross-Browser Issues − We can observe that the functionality of different browsers varies. 
+In order to ensure that modifications made to the website using CSS codes are properly displayed across all browsers, need to be checked.
+
+-->	Confusion due to many CSS levels − This problem is particularly effects for beginners. 
+Since CSS has numerous levels, including CSS2, CSS3, and others.
+
+3)What is the difference between CSS2 and CSS3
+-->	The biggest difference between CSS2 and CSS3 is that CSS3 has been split into different sections, called modules.
+
+4)What do you understand by CSS opacity?
+-->	The opacity CSS property sets the opacity of an element. Opacity is the degree to which content behind an element is hidden, 
+and is the opposite of transparency.
+
+5)How can the background color of an element be changed?
+-->	To add background color in HTML, use the CSS background-color property. 
+Set it to the color name or code you want and place it inside a style attribute. 
+Then add this style attribute to an HTML element, like a table, heading, div, or span tag.
+
+6)How can image repetition of the backup be controlled?
+-->	by using the background-repeat property that will help us to control the repetition of the image.
+The background-repeat property in CSS is used to repeat the background image both horizontally and vertically.
+
+7)What is the use of the background-position property?
+-->	The background-position property sets the starting position of a background image.
+
+8)Which property controls the image scroll in the background?
+-->	background attachment property
+
+9)Why should background and color be used as separate properties?
+-->	There are two reasons behind this: It enhances the legibility of style sheets.
+The background property is a complex property in CSS, and if it is combined with color, the complexity will further increase.
+
+10)How to center block elements using CSS1?
+-->	<center> tag
+
+11)How to maintain the CSS specifications?
+-->	The CSS specifications are maintained by the World Wide Web Consortium (W3C). 
+
+12)What are the ways to integrate CSS as a web page?
+-->	 Inline - by using the style attribute inside HTML elements. Internal - by using a <style> element in the <head>
+ section.
+
+13)What is embedded style sheets?
+-->	An embedded style sheet is declared within the <head> element of an XHTML document. 
+
+14)What are the external style sheets?
+-->	An external style sheet is a separate CSS file that can be accessed by creating a link within the 
+head section of the webpage.
+
+15)What are the advantages and disadvantages of using external style sheets?
+-->	The advantages of External Style Sheets are:
+
+- Using them, the styles of multiple documents can be controlled from one file.
+- Classes can be created for use on multiple HTML element types in many documents.
+- In complex situations, selector and grouping methods can be used to apply styles.
+
+The disadvantages of External Style Sheets are:
+
+- In order to import style information for each document, an extra download is needed.
+- Until the external style sheet is loaded, it may not be possible to render the document.
+- For small number of style definitions, it is not viable.
+
+16)What is the meaning of the CSS selector?
+--> It is a pattern of elements and other terms that tell the browser 
+which HTML elements should be selected to have the CSS property values inside the rule applied to them.
+
+17)What are the media types allowed by CSS?
+-->	braille,embossed,handheld,print,projection,screen,speech,tty,tv.
+
+18)What is the rule set?
+-->	A rule set is a collection of one or many rules that are executed together 
+as a single unit against a specific set of records
+
+
+
+
+
+
+
