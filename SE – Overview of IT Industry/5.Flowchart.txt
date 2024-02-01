@@ -1,0 +1,4 @@
+5. What is Flow chart? Create a flowchart to make addition of two numbers.
+-->
+	A flowchart is a graphical representation of the operations involved in a data processing
+system.

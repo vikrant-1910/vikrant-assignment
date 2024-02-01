@@ -1,0 +1,16 @@
+1. What is software? What is software engineering?
+
+-->
+Software: s/w is the language of computer.
+	- is a collection of computer programs and related data that provide the instructions for
+telling a computer what to do and how to do it.
+	- Just like human language.
+	- 3 main groups depending on their use and application.
+	1) System software / operating system.
+	2) Application s/w
+	3) Programming language
+
+& 
+
+	Software Engineering is a systematic approach to the design, development, operation,
+and maintenance of a software system.

@@ -1,0 +1,34 @@
+2. Explain types of software.
+
+-->
+1) System s/w or OS:
+- 	provides the basic functions for computer usage and helps to run the computer hardware
+and system.
+	- is the s/w used by the computer to translate inputs from various sources into a language
+which a machine can understand.
+	- Basically OS coordinates the different hardware components of a computer.
+	- Ex. Linux, window, macOS, Android, iOS
+
+
+2) Application s/w:
+	- is the general designation of computer programs for performing user tasks.
+	- Types of application s/w
+	1) Mobile app:
+	- Application that run on mobile
+	- Ex. Instagram, facebook, etc
+	2) Desktop app:
+	- That run stand-alone in a desktop or laptop computer.
+	- Ex. Microsoft office suite which includes Word, Excel and PowerPoint.
+	- Ex. Outlook for email, and firefox, Google Chrome, Mozilla are the web browser.
+	- Anti-virus is an application and so is the media player.
+	3) Web app:
+	- That run on a web browser
+	- ex. google.com, facebook.com, etc
+
+
+3) Programming s/w:
+	- is the process of designing, writing, testing, debugging, and maintaining the source code
+of computer programs.
+	- This s/w is pawritten in a programming language.
+	- The purpose of programming is to create a program that exhibits a certain desired
+behavior.

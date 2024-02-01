@@ -1,0 +1,8 @@
+6. What is Use case Diagram? Create a use-case on bill payment on paytm.
+-->
+
+	A use case diagram is a visual representation of the functional requirements of a system from a 
+user's perspective. 
+	It illustrates the various ways users interact with a system and the different scenarios or use 
+cases in which the system must respond. 
+	The primary elements in a use case diagram are actors and use cases.
