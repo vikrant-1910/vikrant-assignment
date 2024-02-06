@@ -1,0 +1,221 @@
+CREATE DATABASE SQL_TASK2
+
+(Table1)
+create table Employee
+(
+    Empid int,
+    EmpName varchar(25),
+    Department varchar(25),
+    ContactNo int,
+    EmailId varchar(25),
+    EmpHeadId int
+    )
+
+INSERT INTO Employee
+    (Empid,EmpName,Department,ContactNo,EmailId,EmpHeadId)
+    VALUES
+    (101,"Isha","E-101",1234567890,"isha@gmail.com",105),
+    (102,"Priya","E-104",1234567890,"priya@yahoo.com",103),
+    (103,"Neha","E-101",1234567890,"neha@gmail.com",101),
+    (104,"Rahul","E-102",1234567890,"rahul@yahoo.com",105),
+    (105,"Abhishek","E-101",1234567890,"abhishek@gmail.com",102);
+
+(Table2)
+create table EmpDept
+(
+    DeptId varchar(40),
+    DeptName varchar(40),
+    Dept_off varchar(40),
+    DeptHead int
+    )
+INSERT INTO `empdept` 
+	(`DeptId`, `DeptName`, `Dept_off`, `DeptHead`) 
+	VALUES ('E-101', 'HR', 'Monday', '105'), 
+	('E-102', 'Development', 'Tuesday', '101'), 
+	('E-103', 'House Keeping', 'Saturday', '103'), 
+	('E-104', 'Sales', 'Sunday', '104'), 
+	('E-105', 'Purchage', 'Tuesday', '104');
+
+(TABLE3)
+CREATE TABLE EmpSalary
+(
+    EmpId int,
+    salary int,
+    IsPermanent varchar(25)
+    )
+INSERT INTO `empsalary` 
+	(`EmpId`, `salary`, `IsPermanent`) 
+	VALUES 
+	('101', '2000', 'Yes'), 
+	('102', '10000', 'Yes'), 
+	('103', '5000', 'No'), 
+	('104', '1900', 'Yes'), 
+	('105', '2300', 'Yes');
+
+(Table4)
+CREATE TABLE Project
+(
+    ProjectId varchar(25),
+    Duration INT
+    )
+INSERT INTO `project` 
+	(`ProjectId`, `Duration`) 
+	VALUES 
+	('p-1', '23'), 
+	('p-2', '15'), 
+	('p-3', '45'),
+	('p-4', '2'), 
+	('p-5', '30');
+
+(Table5)
+CREATE TABLE Country
+(
+    cid varchar(25),
+    cname varchar(25)
+    )
+INSERT INTO `country` 
+	(`cid`, `cname`) 
+	VALUES 
+	('c-1', 'India'), 
+	('c-2', 'USA'), 
+	('c-3', 'China'), 
+	('c-4', 'Pakistan'), 
+	('c-5', 'Russia');
+
+(Table6)
+CREATE TABLE ClientTable
+(
+    ClientId varchar(25),
+    ClientName varchar(25),
+    cid varchar(25)
+    )
+INSERT INTO `clienttable` 
+	(`ClientId`, `ClientName`, `cid`) 
+	VALUES 
+	('cl-1', 'ABC Group', 'c-1'), 
+	('cl-2', 'PQR', 'c-1'), 
+	('cl-3', 'XYZ', 'c-2'), 
+	('cl-4', 'tech altum', 'c-3'), 
+	('cl-5', 'mnp', 'c-5');
+
+(Table7)
+CREATE TABLE EmpProject
+(
+    EmpId int,
+    ProjectId varchar(25),
+    ClientId varchar(25),
+    StartYear int,
+    EndYear INT
+    )
+INSERT INTO `empproject` 
+	(`EmpId`, `ProjectId`, `ClientId`, `StartYear`, `EndYear`) 
+	VALUES ('101', 'P-1', 'CL-1', '2010', '2010'), 
+	('102', 'P-2', 'CL-1', '2010', '2012'), 
+	('103', 'P-1', 'CL-1', '2013', '2015'), 
+	('104', 'P-4', 'CL-2', '2014', '2015'), 
+	('105', 'P-4', 'CL-2', '2015', '2015');
+
+-- Query 1: Select the detail of the employee whose name starts with 'P'
+SELECT *
+FROM Employee
+WHERE EmpName LIKE 'P%';
+
+-- Query 2: How many permanent candidates take a salary more than 5000
+SELECT COUNT(*)
+FROM Employee
+INNER JOIN EmpSalary ON Employee.Empid = EmpSalary.EmpId
+WHERE IsPermanent = 'Yes' AND Salary > 5000;
+
+-- Query 3: Select the detail of employees whose email is in Gmail
+SELECT *
+FROM Employee
+WHERE EmailId LIKE '%@gmail.com';
+
+-- Query 4: Select the details of employees who work for either department E-104 or E-102
+SELECT *
+FROM Employee
+WHERE Department IN ('E-104', 'E-102');
+
+-- Query 5: What is the department name for DeptID E-102?
+SELECT DeptName
+FROM EmpDept
+WHERE DeptId = 'E-102';
+
+-- Query 6: What is the total salary paid to permanent employees?
+SELECT SUM(Salary) AS TotalSalary
+FROM EmpSalary
+WHERE IsPermanent = 'Yes';
+
+-- Query 7: List names of all employees whose name ends with 'a'
+SELECT EmpName
+FROM Employee
+WHERE EmpName LIKE '%a';
+
+-- Query 8: List the number of employees in each department for each project
+SELECT ProjectId, DeptId, COUNT(*) AS NumberOfEmployees
+FROM EmpProject
+GROUP BY ProjectId, DeptId;
+
+-- Query 9: How many projects started in the year 2010
+SELECT COUNT(*)
+FROM Project
+WHERE StartYear = 2010;
+
+-- Query 10: How many projects started and finished in the same year
+SELECT COUNT(*)
+FROM Project
+WHERE StartYear = EndYear;
+
+-- Query 11: Select the name of the employee whose name's 3rd character is 'h'
+SELECT EmpName
+FROM Employee
+WHERE SUBSTRING(EmpName, 3, 1) = 'h';
+
+-- Query 12: Select the department name of the company assigned to the employee whose employee id is greater than 103
+SELECT DeptName
+FROM EmpDept
+WHERE DeptHead IN (SELECT EmpName FROM Employee WHERE Empid > 103);
+
+-- Query 13: Select the name of the employee who is working under Abhishek
+SELECT e.EmpName
+FROM Employee e
+INNER JOIN EmpDept d ON e.Department = d.DeptId
+INNER JOIN Employee a ON d.DeptHead = a.Empid
+WHERE a.EmpName = 'Abhishek';
+
+-- Query 14: Select the name of the employee who is the department head of HR
+SELECT EmpName
+FROM Employee
+WHERE Empid = (SELECT DeptHead FROM EmpDept WHERE DeptId = 'E-101');
+
+-- Query 15: Select the name of the employee head who is permanent
+SELECT EmpName
+FROM Employee
+WHERE Empid IN (SELECT DeptHead FROM EmpDept) AND Empid IN (SELECT EmpId FROM EmpSalary WHERE IsPermanent = 'Yes');
+
+-- Query 16: Select the name and email of the Department Head who is not permanent
+SELECT e.EmpName, e.EmailId
+FROM Employee e
+INNER JOIN EmpDept d ON e.Empid = d.DeptHead
+LEFT JOIN EmpSalary s ON e.Empid = s.EmpId
+WHERE s.IsPermanent <> 'Yes' OR s.IsPermanent IS NULL;
+
+-- Query 17: Select the employee whose department off is Monday
+SELECT e.*
+FROM Employee e
+INNER JOIN EmpDept d ON e.Department = d.DeptId
+WHERE Dept_off = 'Monday';
+
+-- Query 18: Select the Indian client’s details
+SELECT *
+FROM ClientTable
+WHERE cid = 'c-1';
+
+-- Query 19: Select the details of all employees working in the development department
+SELECT e.*
+FROM Employee e
+INNER JOIN EmpDept d ON e.Department = d.DeptId
+WHERE d.DeptName = 'Development';
+
+
+    

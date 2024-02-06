@@ -1,0 +1,109 @@
+-- Create tblProduct table
+CREATE TABLE tblProduct 
+(
+    Prd_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Prd_Name VARCHAR(25),
+    Recommended_Price VARCHAR(25),
+    Category VARCHAR(25)
+);
+
+-- Create tblCustomer table
+CREATE TABLE tblCustomer 
+(
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    City VARCHAR(25),
+    State VARCHAR(25),
+    Zip VARCHAR(25)
+);
+
+-- Create tblSales table
+CREATE TABLE tblSales 
+(
+    Sales_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Prd_ID INT,
+    Cust_Id INT,
+    SalesPrice VARCHAR(25),
+    SalesDate DATE,
+    FOREIGN KEY (Prd_ID) REFERENCES tblProduct(Prd_ID),
+    FOREIGN KEY (Cust_Id) REFERENCES tblCustomer(CustomerID)
+);
+
+-- Query 1: Return the FirstName, LastName, ProductName, and Sales Price for all products sold in the month of October 2022
+SELECT c.FirstName, c.LastName, p.Prd_Name, s.SalesPrice
+FROM tblSales s
+INNER JOIN tblCustomer c ON s.Cust_Id = c.CustomerID
+INNER JOIN tblProduct p ON s.Prd_ID = p.Prd_ID
+WHERE MONTH(s.SalesDate) = 10 AND YEAR(s.SalesDate) = 2022;
+
+-- Query 2: Return the CustomerID, FirstName, and LastName of those individuals in the Customer table who have made no Sales purchases
+SELECT CustomerID, FirstName, LastName
+FROM tblCustomer
+WHERE CustomerID NOT IN (SELECT DISTINCT Cust_Id FROM tblSales);
+
+-- Query 3: Return the FirstName, LastName, SalePrice, Recommended SalePrice, and the difference between the SalePrice and Recommended SalePrice for all Sales
+SELECT c.FirstName, c.LastName, s.SalesPrice, p.Recommended_Price, ABS(CAST(s.SalesPrice AS DECIMAL(10,2)) - CAST(p.Recommended_Price AS DECIMAL(10,2))) AS PriceDifference
+FROM tblSales s
+INNER JOIN tblCustomer c ON s.Cust_Id = c.CustomerID
+INNER JOIN tblProduct p ON s.Prd_ID = p.Prd_ID;
+
+-- Query 4: Add the following Customer and Sale information to the database (using a stored procedure)
+CREATE PROCEDURE AddCustomerSale
+    @FirstName VARCHAR(25),
+    @LastName VARCHAR(25),
+    @City VARCHAR(25),
+    @State VARCHAR(2),
+    @Zip VARCHAR(10),
+    @ProductID INT,
+    @SalePrice VARCHAR(25),
+    @SaleDate DATE
+AS
+BEGIN
+    DECLARE @CustID INT;
+    INSERT INTO tblCustomer (FirstName, LastName, City, State, Zip)
+    VALUES (@FirstName, @LastName, @City, @State, @Zip);
+    SET @CustID = SCOPE_IDENTITY();
+    INSERT INTO tblSales (Prd_ID, Cust_Id, SalesPrice, SalesDate)
+    VALUES (@ProductID, @CustID, @SalePrice, @SaleDate);
+END;
+
+-- Execute the stored procedure to add a new customer and sale
+EXEC AddCustomerSale 'Mansi', 'Joshi', 'Mumbai', 'MH', '400001', 3, '205', '2022-05-12';
+
+-- Query 5: Return the Product Category and the average Sale Price for those customers who have purchased two or more products
+SELECT p.Category, AVG(CAST(s.SalesPrice AS DECIMAL(10,2))) AS AvgSalePrice
+FROM tblSales s
+INNER JOIN tblProduct p ON s.Prd_ID = p.Prd_ID
+INNER JOIN (
+    SELECT Cust_Id
+    FROM tblSales
+    GROUP BY Cust_Id
+    HAVING COUNT(*) >= 2
+) AS c ON s.Cust_Id = c.Cust_Id
+GROUP BY p.Category;
+
+-- Query 6: Update the Sale Price to the Recommended Sale Price of those Sales occurring between 6/10/2022 and 6/20/2022
+UPDATE tblSales
+SET SalesPrice = p.Recommended_Price
+FROM tblSales s
+INNER JOIN tblProduct p ON s.Prd_ID = p.Prd_ID
+WHERE SalesDate BETWEEN '2022-06-10' AND '2022-06-20';
+
+-- Query 7: Number of Sales by Product Category where the average Recommended Price is 10 or more dollars greater than the average Sale Price
+SELECT p.Category, COUNT(*) AS SalesCount
+FROM tblSales s
+INNER JOIN tblProduct p ON s.Prd_ID = p.Prd_ID
+GROUP BY p.Category
+HAVING AVG(CAST(s.SalesPrice AS DECIMAL(10,2))) + 10 < AVG(CAST(p.Recommended_Price AS DECIMAL(10,2)));
+
+-- Query 8: Largest order taken by each salesperson, date-wise
+SELECT s.SalesDate, c.FirstName, c.LastName, MAX(CAST(s.SalesPrice AS DECIMAL(10,2))) AS LargestOrder
+FROM tblSales s
+INNER JOIN tblCustomer c ON s.Cust_Id = c.CustomerID
+GROUP BY s.SalesDate, c.FirstName, c.LastName;
+
+-- Query 9: Without using a declared iterative construct, return Sale Date and the running total for all sales, ordered by the Sale Date in Ascending Order
+SELECT SalesDate, SUM(CAST(SalesPrice AS DECIMAL(10,2))) OVER (ORDER BY SalesDate) AS RunningTotal
+FROM tblSales
+ORDER BY SalesDate ASC;
