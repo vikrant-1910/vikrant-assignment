@@ -1,0 +1,1 @@
+'''You can use the random.randint() function to generate a random integer within a specified range.'''
